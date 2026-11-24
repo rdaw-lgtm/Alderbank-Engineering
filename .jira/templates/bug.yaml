@@ -1,7 +1,7 @@
 schema: 1
 kind: work-item
 description: A bug, something that behaves wrongly.
-required: [why, observed-expected, acceptance-criteria]
+required: [why, target-repo, observed-expected, acceptance-criteria]
 fields:
   - name: why
     heading: Why
@@ -13,6 +13,11 @@ fields:
     format: labelled
     labels: [Repo]
     guidance: Labelled lines rather than prose (`Repo:`, `Primary:`, `Secondary:`), naming the repository and then one to three paths or symbols. Split an item that needs more than three.
+  - name: target-repo
+    heading: Target repo
+    format: prose
+    length: { unit: sentences, min: 1, max: 1 }
+    guidance: The name of the repository the fix belongs to, on its own (for example `Alderbank-Engineering`). It is the destination of the change, so it is required, and it sits beside Where rather than replacing its `Repo:` label.
   - name: observed-expected
     heading: Observed / Expected
     format: labelled
