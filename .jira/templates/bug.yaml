@@ -1,7 +1,7 @@
 schema: 1
 kind: work-item
 description: A bug, something that behaves wrongly.
-required: [why, observed-expected, acceptance-criteria]
+required: [why, target-repo, observed-expected, acceptance-criteria]
 fields:
   - name: why
     heading: Why
@@ -13,6 +13,11 @@ fields:
     format: labelled
     labels: [Repo]
     guidance: Labelled lines rather than prose (`Repo:`, `Primary:`, `Secondary:`), naming the repository and then one to three paths or symbols. Split an item that needs more than three.
+  - name: target-repo
+    heading: Target repo
+    format: labelled
+    labels: [Repo]
+    guidance: One labelled line, `Repo:`, naming the single repository the fix lands in. Name one repository only; split a bug whose fix spans more than one.
   - name: observed-expected
     heading: Observed / Expected
     format: labelled
