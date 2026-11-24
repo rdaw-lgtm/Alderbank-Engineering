@@ -14,6 +14,18 @@
 - Run these commands with `dangerouslyDisableSandbox: true` from the first attempt. Do not run them in the sandbox first and wait for the violation.
 - This applies only to `jira-cli.mjs` and `twg` commands that talk to Atlassian. Run every other Bash command in the sandbox as usual.
 
+# "Work on <issue-key>"
+
+When the user says "Work on <issue-key>" (e.g. "Work on ADD-8"), carry out the whole flow below without stopping to ask for confirmation. Use the `jira:jira-workflows` skill and its references for each step.
+
+1. **Move it to the active board:** transition the ticket out of Backlog into the active board (the sprint/board's active status, e.g. "Selected for Development" or "In Progress", whichever the workflow offers).
+2. **Claim it:** assign it to the user (`work-item claim`).
+3. **Create a branch:** prepare the work-item branch (`branch prepare`), based on `origin/<default branch>`, carrying no unrelated changes.
+4. **Execute the work:** do what the ticket's description and acceptance criteria ask, and run its Verification commands.
+5. **Publish the changes:** commit, then run `changes publish` (push, open the pull request, post the writeback comment) without waiting for the user's approval. The user's "Work on <issue-key>" is the standing approval, so pass `--skip-comment-review` and `--skip-pull-request-review` and do not show the drafts first.
+
+Still stop and ask when a step cannot proceed safely: the ticket's open questions block the approach, a `Care needed` item applies, the tree holds changes unrelated to the ticket, or a publish verdict needs a decision (for example `gh-not-found`, `transition-ambiguous`, `site-unresolved`). Report the PR link and writeback comment when done.
+
 # Creating Confluence pages
 
 - The Alderbank Confluence space is `ABDAO` ("Alderbank Digital Account Opening"), spaceId `2752516`. Its homepage id is `2752793`.
