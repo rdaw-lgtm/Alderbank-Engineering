@@ -23,8 +23,9 @@ When the user says "Work on <issue-key>" (e.g. "Work on ADD-8"), carry out the w
 3. **Create a branch:** prepare the work-item branch (`branch prepare`), based on `origin/<default branch>`, carrying no unrelated changes.
 4. **Execute the work:** do what the ticket's description and acceptance criteria ask, and run its Verification commands.
 5. **Publish the changes:** commit, then run `changes publish` (push, open the pull request, post the writeback comment) without waiting for the user's approval. The user's "Work on <issue-key>" is the standing approval, so pass `--skip-comment-review` and `--skip-pull-request-review` and do not show the drafts first.
+6. **Move it to In review:** once the pull request is published, transition the work item to "In review" (or the closest equivalent status the workflow offers, e.g. "In Review" or "Code Review"). If `changes publish` already performed this transition, confirm the status instead of repeating it.
 
-Still stop and ask when a step cannot proceed safely: the ticket's open questions block the approach, a `Care needed` item applies, the tree holds changes unrelated to the ticket, or a publish verdict needs a decision (for example `gh-not-found`, `transition-ambiguous`, `site-unresolved`). Report the PR link and writeback comment when done.
+Still stop and ask when a step cannot proceed safely: the ticket's open questions block the approach, a `Care needed` item applies, the tree holds changes unrelated to the ticket, or a publish verdict needs a decision (for example `gh-not-found`, `transition-ambiguous`, `site-unresolved`). Report the PR link, the writeback comment and the work item's final status when done.
 
 # Creating Confluence pages
 
